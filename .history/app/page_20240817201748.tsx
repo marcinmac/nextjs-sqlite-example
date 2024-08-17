@@ -2,17 +2,8 @@
 // pages/index.js
 import { useEffect, useState } from 'react';
 
-
-const productsDefault = {
-  id: '',
-  name: '',
-  description: '',
-  price: 0,
-};
-
-
 export default function Home() {
-  const [products, setProducts] = useState([productsDefault]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => { 
     async function fetchProducts() {

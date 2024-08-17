@@ -2,31 +2,23 @@
 // pages/index.js
 import { useEffect, useState } from 'react';
 
-
-const productsDefault = {
-  id: '',
-  name: '',
-  description: '',
-  price: 0,
-};
-
-
 export default function Home() {
-  const [products, setProducts] = useState([productsDefault]);
+  const [products, setProducts] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
+
+
+
+
     async function fetchProducts() {
       try {
         const res = await fetch('/api/products');
-        
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-
-        const data = await res.json();
+        const text = await res.text(); // Get response as text
+        console.log('Raw Response:', text); // Log the raw response
+        const data = JSON.parse(text); // Parse as JSON
         setProducts(data);
       } catch (error) {
-        console.error('Fetch error:', error);
+        console.error('Error parsing JSON:', error);
       }
     }
     fetchProducts();
