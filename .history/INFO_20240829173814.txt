@@ -1,0 +1,2 @@
+netstat -tulpen | grep :3000
+
